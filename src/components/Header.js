@@ -7,6 +7,8 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, SUPPORTED_LANGUAGES, USER_ICON } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice"
 import { changeLanguage } from "../utils/configSlice";
+import { Link } from "react-router-dom";
+
 
 
 const Header = () => {
@@ -62,8 +64,9 @@ const Header = () => {
  
     return (
         <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
-            <img className="w-44 mx-auto md:mx-0"
-             src={LOGO} alt="logo"/> 
+            <h1 className="text-3xl font-bold text-purple-500 w-44 mx-auto md:mx-0">
+              Movie-GPT
+            </h1>
 
              {user && (<div className="flex p-2 justify-between">
 
@@ -77,6 +80,12 @@ const Header = () => {
               >
                 {showGptSearch ? "HomePage" : "GPT Search"}
                 </button>
+
+                <Link to="/about">
+                <button className="py-2 px-4 my-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg">
+                  About
+                </button>
+              </Link>
 
                 <div className="relative">
                 <img

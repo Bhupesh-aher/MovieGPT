@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Login";
 import Browse from "./Browse";
+import About from "./About";
 
 
 
@@ -15,6 +16,10 @@ const Body = () => {
         {
             path: "/browse",
             element: <Browse/>
+        },
+        {
+        path: "/about", // ⬅️ New route
+        element: <About />,
         },
         
     ])
