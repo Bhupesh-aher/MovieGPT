@@ -1,12 +1,26 @@
-# Netflix-GPT 🎥✨
+# Movie-GPT 🎥✨
 
-**Netflix-GPT** is a modern, AI-powered movie discovery platform. This app provides a stunning and interactive UI where users can explore movies and series, discover new releases, and get personalized movie recommendations. The app leverages the power of **GPT** for smart movie recommendations based on user search queries and preferences. It also supports **multiple languages.**
+**Movie-GPT** is a modern, AI-powered movie discovery platform. This app provides a stunning and interactive UI where users can explore movies and series, discover new releases, and get personalized movie recommendations. The app leverages the power of **GPT** for smart movie recommendations based on user search queries and preferences. It also supports **multiple languages.**
 
+## ⚠️ Disclaimer
+
+This project is built purely for educational and personal portfolio purposes.
+
+It is **not affiliated with, endorsed by, or connected to Netflix Inc.**  
+All trademarks and copyrights belong to their respective owners.
+
+No real user data is stored or used. Authentication is demo-only and for UI experience simulation.
+
+---
+
+StreamGPT is a modern, AI-powered movie discovery platform. It offers a sleek, Netflix-inspired user interface where users can browse top-rated, trending, and upcoming movies. The app features personalized movie recommendations powered by GPT and supports multiple languages.
+
+---
 
 
 ## 🚀 Live Demo
 
-🎬 **Visit the Netflix-GPT App -**  https://netflix-gpt-five-lilac.vercel.app
+🎬  This project is currently under review due to branding updates. It will be redeployed soon.
 
 
 
@@ -19,7 +33,7 @@
     - Users can mix and match genres, and the AI will generate movie/series recommendations based on their input.
     - These movie names are then used to fetch detailed information from the **TMDB API** (cover images, descriptions, ratings, etc.).
 - **Movie Trailers**:
-    - Background movie trailers continuously play, providing an immersive visual experience, just like Netflix.
+    - Background movie trailers continuously play, providing an immersive visual experience, just like OTP platforms.
 - **Multiple Movie Categories**:
     - Movies and series are categorized under **Recommended**, **Upcoming**, **Action**, and more.
     - Data is fetched from the **TMDB API**, which provides up-to-date movie information and trailers.
