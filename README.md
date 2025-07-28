@@ -58,9 +58,9 @@ StreamGPT is a modern, AI-powered movie discovery platform. It offers a sleek, N
 
 
 ## Screenshots
-![Image 1](public/assets/netflix%20gpt%20trailer.png)
+![Image 1](public/assets/moviegpt1.png)
 ![Image 1](public/assets/netflix%20gpt%20movies.png)
-![Image 1](public/assets/netflix%20gpt%20search.png)
+![Image 1](public/assets/Screenshot%202025-07-28%20234247.png)
 
 ## Technologies
 
