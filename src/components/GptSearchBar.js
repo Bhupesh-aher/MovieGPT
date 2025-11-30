@@ -18,55 +18,55 @@ const GptSearchBar = () => {
         return json.results;
     }
 
-    const handleGptSearchClick = async() => {
-        const text = searchText.current.value;
-        // console.log(text);
-        // make an API call to GPT API and get Movie suggestions
-        const textQuery = "Act as a movie Recommendation system and suggest some movies for the query : " + text + "only give me names of 5 movies comma separated" 
+    const handleGptSearchClick = async () => {
+    const text = searchText.current.value;
 
-        const result = await chatSession.sendMessage(textQuery)
-        
-        // if(!result){
-        //     // TODO: write error handling
-        // }
-        
-        // console.log(result?.response?.text());
-        
-        const gptMoviesText = result?.response?.text();
-        
-        
-        const gptMovies = JSON.parse(`[${gptMoviesText}]`);
-        // console.log("Parsed Movies Array:", gptMovies);
+    const prompt = `
+    Act as a movie recommendation system.
+    Return ONLY valid JSON in this format:
 
-        if (!Array.isArray(gptMovies) || gptMovies.length === 0) {
-            // console.error("gptMovies is not a valid array");
-            return; // Exit if the array is not valid
+    {
+    "movies": ["Movie1", "Movie2", "Movie3", "Movie4", "Movie5"]
+    }
+
+    Now recommend 5 movies for: "${text}"
+    `;
+
+    try {
+        const result = await chatSession.sendMessage(prompt);
+        const rawText = result?.response?.text();
+
+        console.log("Raw GPT Response:", rawText);
+
+        // Safe parse
+        let parsed;
+        try {
+        parsed = JSON.parse(rawText);
+        } catch (e) {
+        console.error("JSON parse failed. Fixing raw output...");
+        // Try to extract JSON from mixed text
+        const match = rawText.match(/\{[\s\S]*\}/);
+        if (match) parsed = JSON.parse(match[0]);
+        else throw new Error("GPT returned invalid JSON");
         }
 
-       
-        
-        const gpt = gptMovies;
-        // console.log(gpt);
-        const gpt2 = gpt[0].movies;
-        // console.log(gpt2);
-        
-        
-        
-        
-        // for each movie i will search TMDB API
-        const promiseArray = gpt2.map((movie) => searchMovieTMDB(movie))
-        // console.log(promiseArray);
-        
-        // [Promise, Promise, Promise, Promise, Promise]
+        const movieNames = parsed.movies;
+        if (!Array.isArray(movieNames)) {
+        console.error("Invalid structure:", parsed);
+        return;
+        }
 
-        const tmdbResults = await Promise.all(promiseArray);
-        // console.log(tmdbResults);
- 
-        dispatch(addGptMovieResult({movieNames: gpt2, movieResults: tmdbResults}));
-        
-         
-        
+        // Fetch each movie from TMDB
+        const tmdbResults = await Promise.all(
+        movieNames.map((movie) => searchMovieTMDB(movie))
+        );
+
+        dispatch(addGptMovieResult({ movieNames, movieResults: tmdbResults }));
+
+    } catch (err) {
+        console.error("GPT Search error:", err);
     }
+};
 
     return (
          <div className="pt-[40%] md:pt-[10%] flex justify-center">
